@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/components/shoe_tile.dart';
+import 'package:ecommerce_app/models/shoe.dart';
 import 'package:flutter/material.dart';
 
 class ShopPage extends StatefulWidget {
@@ -31,6 +32,7 @@ class _ShopPageState extends State<ShopPage> {
           child: Text('Everyone flies... some fly longer than others',
               style: TextStyle(color: Colors.grey[600])),
         ),
+        const SizedBox(height: 20),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
           child: Row(
@@ -45,10 +47,21 @@ class _ShopPageState extends State<ShopPage> {
             ],
           ),
         ),
-        const SizedBox(height: 10),
-        Expanded(child: ListView.builder(itemBuilder: (context, index) {
-          return const ShoeTile();
-        }))
+        const SizedBox(height: 20),
+        SizedBox(
+            height: 300,
+            child: ListView.builder(
+                itemCount: 4,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  // create a shoe
+                  Shoe shoe = Shoe(
+                      name: 'Nike Air',
+                      price: '240',
+                      imagePath: 'lib/images/nike_1.png',
+                      description: 'Cool shoe');
+                  return ShoeTile(shoe: shoe);
+                })),
       ],
     );
   }
